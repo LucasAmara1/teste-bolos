@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Bolo;
-use Illuminate\Http\Request;
 
 class BoloService
 {

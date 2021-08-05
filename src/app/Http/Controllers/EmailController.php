@@ -3,83 +3,60 @@
 namespace App\Http\Controllers;
 
 use App\Models\Email;
-use Illuminate\Http\Request;
+use App\Services\EmailService;
+use App\Http\Resources\EmailResource;
+use App\Http\Requests\StoreEmailRequest;
+use App\Http\Requests\UpdateEmailRequest;
 
 class EmailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $emails;
+
+    public function __construct(EmailService $emails)
+    {
+        $this->emails = $emails;
+    }
+
     public function index()
     {
-        //
+        $emails = $this->emails->index();
+        return EmailResource::collection($emails);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(StoreEmailRequest $request)
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StoreEmailRequest $request)
     {
-        //
+        $dados_email = $request->all();
+        $email = $this->emails->store($dados_email);
+        return new EmailResource($email);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Email  $email
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Email $email)
+    public function show(Int $id)
     {
-        //
+        $email = $this->emails->show($id);
+        return new EmailResource($email);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Email  $email
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Email $email)
+    public function edit(Int $id)
     {
-        //
+        $email = $this->emails->show($id);
+        return new EmailResource($email);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Email  $email
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Email $email)
+    public function update(UpdateEmailRequest $request, Int $id)
     {
-        //
+        $dados_email = $request->all();
+        $email = $this->emails->update($dados_email, $id);
+        return new EmailResource($email);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Email  $email
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Email $email)
+    public function destroy(Int $id)
     {
-        //
+        $email = $this->emails->destroy($id);
+        return new EmailResource($email);
     }
 }
