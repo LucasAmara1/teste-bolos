@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BoloResource;
 use App\Services\BoloService;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreBoloRequest;
+use App\Http\Requests\UpdateBoloRequest;
 
 class BoloController extends Controller
 {
@@ -26,7 +27,7 @@ class BoloController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(StoreBoloRequest $request)
     {
         $dados_bolo = $request->all();
         $bolo = $this->bolos->store($dados_bolo);
@@ -45,7 +46,7 @@ class BoloController extends Controller
         return new BoloResource($bolo);
     }
 
-    public function update(Request $request, Int $id)
+    public function update(UpdateBoloRequest $request, Int $id)
     {
         $dados_bolo = $request->all();
         $bolo = $this->bolos->update($dados_bolo, $id);
