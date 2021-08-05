@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BoloResource;
-use App\Models\Bolo;
+use App\Services\BoloService;
 use Illuminate\Http\Request;
 
 class BoloController extends Controller
 {
+    protected $bolos;
+
+    public function __construct(BoloService $bolos)
+    {
+        $this->bolos = $bolos;
+    }
+
     public function index()
     {
-        $bolos = Bolo::paginate(10);
+        $bolos = $this->bolos->index();
         return BoloResource::collection($bolos);
     }
 
@@ -21,33 +28,33 @@ class BoloController extends Controller
 
     public function store(Request $request)
     {
-        $bolo = new Bolo();
-        $bolo->nome = $request->nome;
-        $bolo->peso = $request->peso;
-        $bolo->valor = $request->valor;
-        $bolo->quantidade = $request->quantidade;
-        if($bolo->save()){
-            return new BoloResource($bolo);
-        }
+        $dados_bolo = $request->all();
+        $bolo = $this->bolos->store($dados_bolo);
+        return new BoloResource($bolo);
     }
 
-    public function show(Bolo $bolo)
+    public function show(Int $id)
     {
-        //
+        $bolo = $this->bolos->show($id);
+        return new BoloResource($bolo);
     }
 
-    public function edit(Bolo $bolo)
+    public function edit(Int $id)
     {
-        //
+        $bolo = $this->bolos->show($id);
+        return new BoloResource($bolo);
     }
 
-    public function update(Request $request, Bolo $bolo)
+    public function update(Request $request, Int $id)
     {
-        //
+        $dados_bolo = $request->all();
+        $bolo = $this->bolos->update($dados_bolo, $id);
+        return new BoloResource($bolo);
     }
 
-    public function destroy(Bolo $bolo)
+    public function destroy(Int $id)
     {
-        //
+        $bolo = $this->bolos->destroy($id);
+        return new BoloResource($bolo);
     }
 }
