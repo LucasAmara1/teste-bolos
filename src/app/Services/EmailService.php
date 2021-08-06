@@ -52,7 +52,7 @@ class EmailService
         ))
             ->where('id_bolo', $id_bolo)
             ->get();
-
+            
         foreach ($emails as $email) {
             $this->sendEmail($email);
         }

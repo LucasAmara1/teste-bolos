@@ -19,6 +19,7 @@ class CreateBolosTable extends Migration
             $table->integer('peso');
             $table->integer('valor');
             $table->integer('quantidade');
+            $table->boolean('notificar')->default(0);
             $table->timestamps();
         });
     }

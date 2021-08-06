@@ -15,7 +15,8 @@ class Bolo extends Model
         'nome',
         'peso',
         'valor',
-        'quantidade'
+        'quantidade',
+        'notificar'
     ];
 
     public function email()

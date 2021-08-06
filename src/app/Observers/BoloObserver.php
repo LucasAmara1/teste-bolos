@@ -28,7 +28,7 @@ class BoloObserver
         //
     }
 
-     /**
+    /**
      * Handle the Bolo "updating" event.
      *
      * @param  \App\Models\Bolo  $bolo
@@ -38,7 +38,7 @@ class BoloObserver
     {
         $bolo_desejado_disponivel = $this->bolos->is_available($novos_dados_bolo->id);
         if (!$bolo_desejado_disponivel && $novos_dados_bolo->quantidade > 0)
-            $this->emails->send_to_group($novos_dados_bolo->id);
+            $novos_dados_bolo->notificar = 1;
     }
 
     /**
@@ -49,9 +49,8 @@ class BoloObserver
      */
     public function updated(Bolo $bolo)
     {
-        // $bolo_desejado_disponivel = $this->bolos->is_available($bolo->id);
-        // if ($bolo_desejado_disponivel)
-        //     $this->emails->send_to_group($bolo->id);
+        if ($bolo->notificar)
+            $this->emails->send_to_group($bolo->id);
     }
 
     /**
