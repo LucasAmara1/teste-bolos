@@ -49,8 +49,10 @@ class BoloObserver
      */
     public function updated(Bolo $bolo)
     {
-        if ($bolo->notificar)
+        if ($bolo->notificar){
             $this->emails->send_to_group($bolo->id);
+            $this->bolos->updateNotificar($bolo);
+        }
     }
 
     /**

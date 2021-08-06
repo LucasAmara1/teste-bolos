@@ -41,4 +41,10 @@ class BoloService
     {
         return Bolo::find($id, ['quantidade'])->quantidade > 0;
     }
+
+    public function updateNotificar(Bolo $bolo)
+    {
+        $bolo->notificar = 0;
+        $bolo->save();
+    }
 }
