@@ -36,7 +36,7 @@ class BoloObserver
      */
     public function updating(Bolo $novos_dados_bolo)
     {
-        $bolo_desejado_disponivel = $this->bolos->is_available($novos_dados_bolo->getRawOriginal()['id']);
+        $bolo_desejado_disponivel = $this->bolos->is_available($novos_dados_bolo->id);
         if (!$bolo_desejado_disponivel && $novos_dados_bolo->quantidade > 0)
             $this->emails->send_to_group($novos_dados_bolo->id);
     }
