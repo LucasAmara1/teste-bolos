@@ -20,6 +20,6 @@ class Bolo extends Model
 
     public function email()
     {
-        return $this->hasMany(Email::class, 'id_bolo', 'id');
+        return $this->hasMany(Email::class, 'id', 'id_bolo');
     }
 }

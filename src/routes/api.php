@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resources([
-    'bolos' => BoloController::class, 
+    'bolos' => BoloController::class,
     'emails' => EmailController::class
 ]);
+

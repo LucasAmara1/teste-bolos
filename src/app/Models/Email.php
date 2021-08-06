@@ -18,6 +18,6 @@ class Email extends Model
 
     public function bolo()
     {
-        return $this->belongsTo(Email::class, 'id_bolo', 'id');
+        return $this->belongsTo(Bolo::class, 'id_bolo', 'id');
     }
 }

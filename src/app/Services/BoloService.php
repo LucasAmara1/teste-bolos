@@ -36,4 +36,9 @@ class BoloService
         $bolo->delete();
         return $bolo;
     }
+
+    public function is_available(int $id)
+    {
+        return Bolo::find($id, ['quantidade'])->quantidade > 0;
+    }
 }

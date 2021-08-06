@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Email;
 use App\Services\EmailService;
 use App\Http\Resources\EmailResource;
 use App\Http\Requests\StoreEmailRequest;
@@ -23,7 +22,7 @@ class EmailController extends Controller
         return EmailResource::collection($emails);
     }
 
-    public function create(StoreEmailRequest $request)
+    public function create()
     {
         //
     }
