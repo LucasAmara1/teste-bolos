@@ -1,4 +1,4 @@
-# teste-bolo
+# Teste dos bolos
 
 A aplicação consiste em um CRUD de rotas de API para o cadastro de bolos.
 
@@ -69,10 +69,12 @@ Realize a migração do banco de dados e execute os seeds para criação dos pro
 php artisan migrate --seed
 ```
 
-Para que a fila de disparo de emails seja consumida, rode o comando:
+Para que a fila de disparo de emails seja consumida, execute o comando:
 ```
 php artisan queue:work
 ```
+Por fim, é possível requisitar a API via url: `127.0.0.1:8000`
+
 ## Sobre o autor
 > [Lucas Amaral](https://www.linkedin.com/in/lucas-amaral-727b1613a/)
 > 
