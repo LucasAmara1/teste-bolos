@@ -41,7 +41,19 @@ class EmailService
     {
         if ($bolo_desejado_disponivel){
             $nome_bolo = $email->bolo->nome;
-            BoloDisponivelJob::dispatch($email, $nome_bolo)->delay(now()->addSeconds('10'));
+            BoloDisponivelJob::dispatch($email, $nome_bolo)->delay(now()->addSeconds('5'));
         }
+    }
+
+    public function next_to_receive(int $id_bolo)
+    {
+        return Email::select(array(
+            'id',
+            'endereco_email',
+            'id_bolo',
+        ))
+            ->where('id_bolo', $id_bolo)
+            ->oldest()
+            ->first();
     }
 }
