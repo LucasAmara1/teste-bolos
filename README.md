@@ -34,6 +34,7 @@ git clone https://github.com/LucasAmara1/teste-bolos.git
 ```
 
 O arquivo `.env.example` possuem dados genéricos para configuração da aplicação. Faça uma copia do `.env.example` e renomeie para `.env`.
+
 Para que o envio de emails funcione, as configurações de envio devem ser adicionadas ao `.env`. **[Aqui](https://www.itsolutionstuff.com/post/laravel-8-send-mail-using-gmail-smtp-serverexample.html)** temos um exemplo de configuração utilizando o Gmail SMTP Server.
 
 No arquivo **[docker-composer.yml](https://github.com/LucasAmara1/teste-bolos/blob/main/src/docker-compose.yml)**,  altere em args, o `user`, de `lucas` para seu username do linux.
