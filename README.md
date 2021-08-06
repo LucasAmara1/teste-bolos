@@ -7,6 +7,7 @@ A aplicação consiste em um CRUD de rotas de API para o cadastro de bolos.
 - [x] A aplicação consiste em um CRUD de bolos com as seguintes especificações:
   - [x] Os bolos deverão ter Nome, Peso (em gramas), Valor, Quantidade disponível e uma lista de e-mail de interessados.
   - [x] Após o cadastro de e-mails interessados, caso haja bolo disponível, o sistema deve enviar um e-mail para os interessados sobre a disponibilidade do bolo.
+    - [x] Caso um bolo específico esteja indisponível (quantidade igual a 0), o sistema deve enviar um e-mail para os interessados sobre a disponibilidade desse bolo assim que a quantidade do bolo for maior que 0.
 
 ## Descrição do **[Docker compose](https://docs.docker.com/compose/)**
 

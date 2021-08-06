@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Email;
+use App\Models\Bolo;
 use App\Jobs\BoloDisponivelJob;
 
 class EmailService
@@ -14,7 +15,9 @@ class EmailService
 
     public function store(array $dados_email)
     {
-        return Email::create($dados_email);
+        $bolo = Bolo::find($dados_email['id_bolo']);
+        if ($bolo)
+            return Email::create($dados_email);
     }
 
     public function show(int $id)
@@ -52,7 +55,7 @@ class EmailService
         ))
             ->where('id_bolo', $id_bolo)
             ->get();
-            
+
         foreach ($emails as $email) {
             $this->sendEmail($email);
         }
