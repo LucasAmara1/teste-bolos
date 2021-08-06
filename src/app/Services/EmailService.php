@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Email;
-use App\Models\Bolo;
 use App\Jobs\BoloDisponivelJob;
 
 class EmailService
@@ -15,8 +14,7 @@ class EmailService
 
     public function store(array $dados_email)
     {
-        if ($this->checkBolo($dados_email['id_bolo']))
-            return Email::create($dados_email);
+        return Email::create($dados_email);
     }
 
     public function show(int $id)
@@ -27,11 +25,9 @@ class EmailService
 
     public function update(array $dados_email, int $id)
     {
-        if ($this->checkBolo($dados_email['id_bolo'])){
-            $email = Email::find($id, ['id']);
-            $email->update($dados_email);
-            return Email::find($id);
-        }
+        $email = Email::find($id, ['id']);
+        $email->update($dados_email);
+        return Email::find($id);
     }
 
     public function destroy(int $id)
@@ -39,11 +35,6 @@ class EmailService
         $email = Email::find($id);
         $email->delete();
         return $email;
-    }
-
-    public function checkBolo(int $id)
-    {
-        return Bolo::find($id,['id']);
     }
 
     public function sendEmail(Email $email)
@@ -61,7 +52,7 @@ class EmailService
         ))
             ->where('id_bolo', $id_bolo)
             ->get();
-
+            
         foreach ($emails as $email) {
             $this->sendEmail($email);
         }
