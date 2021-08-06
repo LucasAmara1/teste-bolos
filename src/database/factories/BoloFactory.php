@@ -25,7 +25,7 @@ class BoloFactory extends Factory
             'nome' => $this->faker->words(1, true),
             'peso' => $this->faker->numberBetween(500, 4000),        
             'valor' => $this->faker->numberBetween(3000, 20000),
-            'quantidade' => $this->faker->numberBetween(1, 10),                
+            'quantidade' => $this->faker->numberBetween(0, 10),                
         ];
     }
 }
