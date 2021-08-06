@@ -33,7 +33,7 @@ Clone o projeto:
 git clone https://github.com/LucasAmara1/teste-bolos.git
 ```
 
-O arquivo `.env.example` possuem dados genéricos para configuração da aplicação. Faça uma copia do `.env.example` e renomeie para `.env`.
+O arquivo `.env.example` possuem dados genéricos para configuração da aplicação. Faça uma copia do `.env.example` e renomeie para `.env`. No `.env`, altere o DB_USERNAME de `lucas` para seu username do linux.
 
 Para que o envio de emails funcione, as configurações de envio devem ser adicionadas ao `.env`. **[Aqui](https://www.itsolutionstuff.com/post/laravel-8-send-mail-using-gmail-smtp-serverexample.html)** temos um exemplo de configuração utilizando o Gmail SMTP Server.
 
