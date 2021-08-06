@@ -15,8 +15,7 @@ class EmailService
 
     public function store(array $dados_email)
     {
-        $bolo = Bolo::find($dados_email['id_bolo']);
-        if ($bolo)
+        if ($this->checkBolo($dados_email['id_bolo']))
             return Email::create($dados_email);
     }
 
@@ -28,9 +27,11 @@ class EmailService
 
     public function update(array $dados_email, int $id)
     {
-        $email = Email::find($id, ['id']);
-        $email->update($dados_email);
-        return Email::find($id);
+        if ($this->checkBolo($dados_email['id_bolo'])){
+            $email = Email::find($id, ['id']);
+            $email->update($dados_email);
+            return Email::find($id);
+        }
     }
 
     public function destroy(int $id)
@@ -38,6 +39,11 @@ class EmailService
         $email = Email::find($id);
         $email->delete();
         return $email;
+    }
+
+    public function checkBolo(int $id)
+    {
+        return Bolo::find($id,['id']);
     }
 
     public function sendEmail(Email $email)
