@@ -37,23 +37,24 @@ class EmailService
         return $email;
     }
 
-    public function sendEmail(bool $bolo_desejado_disponivel, Email $email)
+    public function sendEmail(Email $email)
     {
-        if ($bolo_desejado_disponivel){
-            $nome_bolo = $email->bolo->nome;
-            BoloDisponivelJob::dispatch($email, $nome_bolo)->delay(now()->addSeconds('5'));
-        }
+        $nome_bolo = $email->bolo->nome;
+        BoloDisponivelJob::dispatch($email, $nome_bolo)->delay(now()->addSeconds('5'));
     }
 
-    public function next_to_receive(int $id_bolo)
+    public function send_to_group(int $id_bolo)
     {
-        return Email::select(array(
+        $emails =  Email::select(array(
             'id',
             'endereco_email',
             'id_bolo',
         ))
             ->where('id_bolo', $id_bolo)
-            ->oldest()
-            ->first();
+            ->get();
+
+        foreach ($emails as $email) {
+            $this->sendEmail($email);
+        }
     }
 }

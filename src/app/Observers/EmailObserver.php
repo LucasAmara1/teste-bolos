@@ -26,7 +26,8 @@ class EmailObserver
     public function created(Email $email)
     {
         $bolo_desejado_disponivel = $this->bolos->is_available($email->id_bolo);
-        $this->emails->sendEmail($bolo_desejado_disponivel, $email);
+        if ($bolo_desejado_disponivel)
+            $this->emails->sendEmail($email);
     }
 
     /**

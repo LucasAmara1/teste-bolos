@@ -36,12 +36,9 @@ class BoloObserver
      */
     public function updated(Bolo $bolo)
     {
-        $bolo_desejado_disponivel = $bolo->quantidade > 0;
-        if ($bolo_desejado_disponivel) {
-            $email_destino = $this->emails->next_to_receive($bolo->id);
-            if ($email_destino)
-                $this->emails->sendEmail($bolo_desejado_disponivel, $email_destino);
-        }
+        $bolo_desejado_disponivel = $this->bolos->is_available($bolo->id);
+        if ($bolo_desejado_disponivel)
+            $this->emails->send_to_group($bolo->id);
     }
 
     /**
