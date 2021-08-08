@@ -24,7 +24,7 @@ class StoreEmailRequest extends FormRequest
     public function rules()
     {
         return [
-            'endereco_email' => 'required',
+            'endereco_email' => 'required|email',
             'id_bolo' => 'required',
             'id_bolo' => 'exists:bolos,id'
         ];
@@ -39,6 +39,7 @@ class StoreEmailRequest extends FormRequest
     {
         return [
             'endereco_email.required' => 'O campo email é obrigatório.',
+            'endereco_email.email' => 'Digite um email válido.',
             'id_bolo.required' => 'O campo bolo é obrigatório.',
             'id_bolo.exists' => 'O bolo selecionado é inválido.',
         ];
