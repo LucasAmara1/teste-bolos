@@ -19,7 +19,7 @@ class BoloService
 
     public function show(int $id)
     {
-        $bolo = Bolo::find($id, ['nome', 'peso', 'valor', 'quantidade']);
+        $bolo = Bolo::find($id, ['id','nome', 'peso', 'valor', 'quantidade']);
         return $bolo;
     }
 
